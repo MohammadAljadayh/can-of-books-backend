@@ -1,3 +1,5 @@
+
+
 # Start your own "Can of Books" App
 
 This repository has starter code to begin work on creating your own online bookshelf.
@@ -9,7 +11,6 @@ Books are life-changing. They have the power to enlighten, educate, entertain, h
 ## Use this template
 
 Clone this repo to your own account with the green "Use this template" button. Then, add any collaborators. Now you are ready to start adding features! Deploy your site to let the world know which books have had the greatest impact on you, and what's recommended. Enjoy!
-
 
 # Project Name
 
@@ -36,13 +37,13 @@ Clone this repo to your own account with the green "Use this template" button. T
 ## Credit and Collaborations
 
 
+Name of feature: crete new app using express ,nodejs,mongoDB
 
-Name of feature: ________________________________
+Estimate of time needed to complete: 3 hours 
 
-Estimate of time needed to complete: _____
+Start time: 2.5 
 
-Start time: _____
+Finish time: 6.5 
 
-Finish time: _____
+Actual time needed to complete: 3-4 hours . 
 
-Actual time needed to complete: _____
