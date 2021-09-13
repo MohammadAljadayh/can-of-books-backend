@@ -11,7 +11,7 @@ app.use(cors());
 const PORT = process.env.PORT;
 const MONGO_URL = process.env.MONGO_URL;
 const DB_NAME = process.env.DB_NAME;
-mongoose.connect(`${MONGO_URL}/${DB_NAME}`, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(`${MONGO_URL}`, {useNewUrlParser: true, useUnifiedTopology: true});
 
 
 const bookModel = require('./bookModel');
