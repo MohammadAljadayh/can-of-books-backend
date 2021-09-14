@@ -87,6 +87,12 @@ const postBooksHandler = (req, res) =>{
       res.send(newBook);
     }
   });
+
+  // const newBook =new bookModel ({
+  //   title, description, status, email, img
+  //   });
+  //   newBook.save();
+  //   response.json(newBook);
 };
 app.get('/books',getBooksHandler);
 
