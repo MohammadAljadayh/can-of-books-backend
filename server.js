@@ -12,7 +12,7 @@ const PORT = process.env.PORT;
 const MONGO_URL = process.env.MONGO_URL;
 const DB_NAME = process.env.DB_NAME;
 mongoose.connect(MONGO_URL,{useNewUrlParser: true, useUnifiedTopology: true});
-
+app.use(express.json());
 
 const bookModel = require('./bookModel');
 
@@ -61,12 +61,36 @@ const getBooksHandler = (req, res) => {
     }
     else {
         console.log(resultData);
-        res.json(resultData)
+        res.json(resultData);
     }
 });
 };
 
+const postBooksHandler = (req, res) =>{
+  console.log('post');
+  const {title, description,email,status,img} = req.body;
+
+  const newBook = {
+    title: title,
+    description: description,
+    status: status,
+   email:email,
+    img: img
+  };
+
+  bookModel.find( (err, resultData) =>{
+    if(err)
+      res.status(500).send(err.message);
+    else{
+      resultData.push(newBook);
+      resultData[0].save();
+      res.send(newBook);
+    }
+  });
+};
 app.get('/books',getBooksHandler);
+
+app.post('/books', postBooksHandler);
 
 app.get('/test', (request, response) => {
 
