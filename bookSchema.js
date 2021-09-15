@@ -5,7 +5,9 @@ const bookSchema = new mongoose.Schema({
     description : String,
     status : String,
     email : String,
-    img : String,
+    img : String
+ 
   });
 
 
+module.exports= bookSchema;

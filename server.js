@@ -51,7 +51,7 @@ const seedBook = () => {
   book3.save();
 };
 
-// seedBook();
+//seedBook();
 
 // console.log("data seeded");
 
@@ -67,16 +67,19 @@ const getBooksHandler = (req, res) => {
 };
 
 const createBookHandler = (req, res) => {
-  const { title, description, email, img, status } = req.body;
+  console.log(req.body);
+  const {title,description,status,email,img} =req.body;
+  
   const newBookModel = new bookModel({
     title,
     description,
-    email,
-    img,
     status,
+    email,
+    img
   });
   newBookModel.save();
-  res.json(newBookModel);
+  console.log(newBookModel);
+  res.send(newBookModel);
 };
 const deleteBooksHandler = (req, res) => {
   const bookId = req.params.books_id;
@@ -85,9 +88,22 @@ const deleteBooksHandler = (req, res) => {
     res.json(deletedData);
   });
 };
+
+const updateBookHandler = (req, res) => {
+
+  const {title,description,status,email,img} =req.body;
+  const bookId = req.params.books_id;
+
+  bookModel.findByIdAndUpdate({ _id: bookId }, { title,description,status,email,img }, { new: true }, (error, updatedBookData) => {
+
+    res.json(updatedBookData);
+  });
+}
+
 app.get("/books", getBooksHandler);
 app.post("/books", createBookHandler);
 app.delete("/books/:books_id", deleteBooksHandler);
+app.put("/books/:books_id", updateBookHandler) ;
 app.get("/test", (request, response) => {
   response.send("test request received");
 });
