@@ -85,9 +85,24 @@ const deleteBooksHandler = (req, res) => {
     res.json(deletedData);
   });
 };
+const updateBook = (req, res) => {
+  const { title, description, email, img, status } = req.body;
+  const bookId = req.params.books_id;
+
+  bookModel.findByIdAndUpdate(
+    { _id: bookId },
+    { title, description, email, img, status },
+    { new: true },
+    (error, updatedBookData) => {
+      res.json(updatedBookData);
+      console.log(updatedBookData);
+    }
+  );
+};
 app.get("/books", getBooksHandler);
 app.post("/books", createBookHandler);
 app.delete("/books/:books_id", deleteBooksHandler);
+app.put("/books/:books_id", updateBook);
 app.get("/test", (request, response) => {
   response.send("test request received");
 });
