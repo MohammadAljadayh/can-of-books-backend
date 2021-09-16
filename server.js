@@ -56,7 +56,7 @@ const seedBook = () => {
 // console.log("data seeded");
 
 const getBooksHandler = (req, res) => {
-  bookModel.find((err, resultData) => {
+  bookModel.find({ email: req.query.email }, (err, resultData) => {
     if (err) {
       console.log("Error");
     } else {
@@ -68,14 +68,14 @@ const getBooksHandler = (req, res) => {
 
 const createBookHandler = (req, res) => {
   console.log(req.body);
-  const {title,description,status,email,img} =req.body;
-  
+  const { title, description, status, email, img } = req.body;
+
   const newBookModel = new bookModel({
     title,
     description,
     status,
     email,
-    img
+    img,
   });
   newBookModel.save();
   console.log(newBookModel);
@@ -90,20 +90,23 @@ const deleteBooksHandler = (req, res) => {
 };
 
 const updateBookHandler = (req, res) => {
-
-  const {title,description,status,email,img} =req.body;
+  const { title, description, status, email, img } = req.body;
   const bookId = req.params.books_id;
 
-  bookModel.findByIdAndUpdate({ _id: bookId }, { title,description,status,email,img }, { new: true }, (error, updatedBookData) => {
-
-    res.json(updatedBookData);
-  });
-}
+  bookModel.findByIdAndUpdate(
+    { _id: bookId },
+    { title, description, status, email, img },
+    { new: true },
+    (error, updatedBookData) => {
+      res.json(updatedBookData);
+    }
+  );
+};
 
 app.get("/books", getBooksHandler);
 app.post("/books", createBookHandler);
 app.delete("/books/:books_id", deleteBooksHandler);
-app.put("/books/:books_id", updateBookHandler) ;
+app.put("/books/:books_id", updateBookHandler);
 app.get("/test", (request, response) => {
   response.send("test request received");
 });
